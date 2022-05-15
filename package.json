@@ -1,0 +1,24 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jorgearguellles/movie-app.js.git"
+  },
+  "keywords": [
+    "Axios",
+    "JavaScript",
+    "HTTPS"
+  ],
+  "author": "Jorge Arias Argüelles",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jorgearguellles/movie-app.js/issues"
+  },
+  "homepage": "https://github.com/jorgearguellles/movie-app.js#readme"
+}
