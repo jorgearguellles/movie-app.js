@@ -26,7 +26,7 @@ const getTrendingMoviesPreview = async () => {
     movieContainer.appendChild(movieImg);
     trendingPreviewMoviesContainer.appendChild(movieContainer)
   });
-}
+};
 
 const getCategoriesPreview = async () => {
   const { data } = await api('genre/movie/list');
@@ -47,6 +47,4 @@ const getCategoriesPreview = async () => {
     categoryContainer.appendChild(categoryTitle);
     categoriesPreviewMoviesContainer.appendChild(categoryContainer)
   });
-}
-getTrendingMoviesPreview();
-getCategoriesPreview();
+};
