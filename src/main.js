@@ -8,7 +8,7 @@ const api = axios.create({
   },
 });
 
-// Utils
+// Utils ============================
 
 const createMovies = (movies, container) => {
   container.innerHTML = '';
@@ -47,7 +47,7 @@ const createCategories = (categories, container) => {
   });
 };
 
-// API Calling
+// API Calling ============================
 const getTrendingMoviesPreview = async () => {
   const { data } = await api('trending/movie/day');
   const movies = data.results;
@@ -66,6 +66,17 @@ const getMoviesByCategory = async (id) => {
   const { data } = await api('discover/movie',{
     params: {
       with_genres: id,
+    }
+  });
+  const movies = data.results;
+
+  createMovies(movies, genericSection)
+}
+
+const getMoviesBySearch = async (query) => {
+  const { data } = await api('search/movie',{
+    params: {
+      query,
     }
   });
   const movies = data.results;
