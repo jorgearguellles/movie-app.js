@@ -61,6 +61,10 @@ function trendPage(){
   categoriesPreviewSection.classList.add('inactive');
   genericSection.classList.remove('inactive');
   movieDetailSection.classList.add('inactive');
+
+  headerCategoryTitle.innerText = 'Trending';
+
+  getTrendingMovies();
 };
 
 function searchPage(){
