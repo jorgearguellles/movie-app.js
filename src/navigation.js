@@ -19,6 +19,9 @@ function navigator(){
   } else {
     homePage()
   }
+
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 };
 
 function homePage(){
