@@ -15,6 +15,9 @@ const createMovies = (movies, container) => {
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
+    movieContainer.addEventListener('click',()=>{
+    location.hash = '#movie=' + movie.id;
+    })
 
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
@@ -89,4 +92,12 @@ const getTrendingMovies = async () => {
   const movies = data.results;
 
   createMovies(movies, genericSection);
+};
+
+const getMovieById = async (id) => {
+  const { data:movie } = await api('movie/' + id);
+
+  movieDetailTitle.textContent = movie.title;
+  movieDetailDescription.textContent = movie.overview;
+  movieDetailScore.textContent = movie.vote_average;
 };
