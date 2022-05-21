@@ -8,12 +8,10 @@ const api = axios.create({
   },
 });
 
-const getTrendingMoviesPreview = async () => {
-  const { data } = await api('trending/movie/day');
-  const movies = data.results;
+// Utils
 
-  trendingMoviesPreviewList.innerHTML = '';
-
+const createMovies = (movies, container) => {
+  container.innerHTML = '';
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
@@ -24,15 +22,12 @@ const getTrendingMoviesPreview = async () => {
     movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
      
     movieContainer.appendChild(movieImg);
-    trendingMoviesPreviewList.appendChild(movieContainer)
+    container.appendChild(movieContainer)
   });
 };
 
-const getCategoriesPreview = async () => {
-  const { data } = await api('genre/movie/list');
-  const categories = data.genres;
-
-  categoriesPreviewList.innerHTML = '';
+const createCategories = (categories, container) => {
+  container.innerHTML = '';
   
   categories.forEach(category => {
     const categoryContainer = document.createElement('div');
@@ -48,8 +43,23 @@ const getCategoriesPreview = async () => {
      
     categoryTitle.appendChild(categoryTitleText)
     categoryContainer.appendChild(categoryTitle);
-    categoriesPreviewList.appendChild(categoryContainer)
+    container.appendChild(categoryContainer)
   });
+};
+
+// API Calling
+const getTrendingMoviesPreview = async () => {
+  const { data } = await api('trending/movie/day');
+  const movies = data.results;
+
+  createMovies(movies, trendingMoviesPreviewList);
+};
+
+const getCategoriesPreview = async () => {
+  const { data } = await api('genre/movie/list');
+  const categories = data.genres;
+
+  createCategories(categories, categoriesPreviewList);
 };
 
 const getMoviesByCategory = async (id) => {
@@ -60,18 +70,5 @@ const getMoviesByCategory = async (id) => {
   });
   const movies = data.results;
 
-  genericSection.innerHTML = '';
-
-  movies.forEach(movie => {
-    const movieContainer = document.createElement('div');
-    movieContainer.classList.add('movie-container');
-
-    const movieImg = document.createElement('img');
-    movieImg.classList.add('movie-img');
-    movieImg.setAttribute('alt', movie.title);
-    movieImg.setAttribute('src', 'https://image.tmdb.org/t/p/w300' + movie.poster_path);
-     
-    movieContainer.appendChild(movieImg);
-    genericSection.appendChild(movieContainer)
-  });
+  createMovies(movies, genericSection)
 }
